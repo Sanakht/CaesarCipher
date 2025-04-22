@@ -45,21 +45,12 @@ public class Cipher {
             str.append(newArrayChar).append("\n");
         }
 
-        if(Files.isRegularFile(outputPath)) {
-            Files.write(outputPath, str.toString().getBytes());
-        } else {
-            Files.createFile(outputPath);
-            Files.write(outputPath, str.toString().getBytes());
-        }
+        Files.write(outputPath, str.toString().getBytes());
 
-
-
-
-        //return str.toString();
     }
-    public String decrypt(String encryptedText, int shift) {
+    public void decrypt(String encryptedText, int shift) {
         // Логика расшифровки
-        return "";
+
     }
 
 }

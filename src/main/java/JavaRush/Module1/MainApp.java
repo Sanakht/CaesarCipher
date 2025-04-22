@@ -16,16 +16,16 @@ public class MainApp
     {
         Cipher cipher = new Cipher(ALPHABET);
 
-        String inputFile = "C:\\Users\\User\\Desktop\\TestModule1\\Text.txt";
+        String inputFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\Text.txt";
 
-        String outPutFile = "C:\\Users\\User\\Desktop\\TestModule1\\Text2.txt";
+        String outPutFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\Text2.txt";
 
 //        Path inputFile = Path.of("C:\\Users\\User\\Desktop\\TestModule1\\Text.txt");
 //        Path outPutFile = Path.of("C:\\Users\\User\\Desktop\\TestModule1\\Text2.txt");
 
 
         try {
-            cipher.encrypt(inputFile,outPutFile,5);
+            cipher.encrypt(inputFileForEncrypt,outPutFileForEncrypt,5);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
