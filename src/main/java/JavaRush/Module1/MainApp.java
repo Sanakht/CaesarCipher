@@ -22,7 +22,7 @@ public class MainApp
 
 
         try {
-            cipher.encrypt(inputFileForEncrypt,outPutFileForEncrypt,5);
+            cipher.encrypt(inputFileForEncrypt,outPutFileForEncrypt,4);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
