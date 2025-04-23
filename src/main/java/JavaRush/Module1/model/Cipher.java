@@ -25,7 +25,7 @@ public class Cipher {
 
         List<String> listInputFile = Files.readAllLines(inputPath);
 
-        int keyFirstIndex = 1; // Значение индекса с которого будет происходить отсчет
+        int keyFirstIndex = 0; // Значение индекса с которого будет происходить отсчет
 
         // Валидация ключа
 
@@ -39,8 +39,9 @@ public class Cipher {
             char[] newArrayChar = new char[arrayChar.length];
 
             for (int i = 0; i < arrayChar.length; i++) {
-                for (int j = 0; j < alphabet.length; j++) {
-
+                int j = 0;
+                boolean indexJ = true;
+                do{
                     if(arrayChar[i] == alphabet[j]) {
                         int index = j + encryptKey;
                         if(index > alphabet.length - 1 ) {
@@ -49,7 +50,11 @@ public class Cipher {
                         }
                         newArrayChar[i] = alphabet[index];
                     }
-                }
+                    j++;
+                    if(j > alphabet.length - 1) {
+                        indexJ = false;
+                    }
+                }while(indexJ);
             }
 
             str.append(newArrayChar).append("\n");
