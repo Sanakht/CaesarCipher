@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cipher {
 
     private char[] alphabet;
+
 
     public Cipher(char[] alphabet) {
         this.alphabet = alphabet;
@@ -23,6 +25,14 @@ public class Cipher {
 
         List<String> listInputFile = Files.readAllLines(inputPath);
 
+        int keyFirstIndex = 1; // Значение индекса с которого будет происходить отсчет
+
+        // Валидация ключа
+
+        int encryptKey = key >= 0? key % alphabet.length + keyFirstIndex : (key % alphabet.length) + keyFirstIndex + alphabet.length;
+
+
+
         for(String text: listInputFile) {
             char[] arrayChar = text.toCharArray();
 
@@ -32,9 +42,9 @@ public class Cipher {
                 for (int j = 0; j < alphabet.length; j++) {
 
                     if(arrayChar[i] == alphabet[j]) {
-                        int index = j + key;
+                        int index = j + encryptKey;
                         if(index > alphabet.length - 1 ) {
-                            index = index - alphabet.length;
+                            index = (index - alphabet.length) % alphabet.length;
                             newArrayChar[i] = alphabet[index];
                         }
                         newArrayChar[i] = alphabet[index];
