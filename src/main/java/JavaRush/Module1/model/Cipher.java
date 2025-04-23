@@ -1,11 +1,11 @@
 package JavaRush.Module1.model;
 
+import JavaRush.Module1.exceptions.NotFoundSymbolException;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Cipher {
@@ -42,22 +42,25 @@ public class Cipher {
                 int j = 0;
                 boolean indexJ = true;
                 do{
+
                     if(arrayChar[i] == alphabet[j]) {
                         int index = j + encryptKey;
                         if(index > alphabet.length - 1 ) {
                             index = (index - alphabet.length) % alphabet.length;
-                            newArrayChar[i] = alphabet[index];
                         }
                         newArrayChar[i] = alphabet[index];
-                    }
-                    j++;
-                    if(j > alphabet.length - 1) {
                         indexJ = false;
                     }
+                    j++;
+
+                   if(j > alphabet.length - 1){
+                       throw new NotFoundSymbolException(Character.toString(arrayChar[i]));
+                    }
+
                 }while(indexJ);
             }
 
-            str.append(newArrayChar).append("\n");
+            str.append(newArrayChar).append('\n');
         }
 
         Files.write(outputPath, str.toString().getBytes());
