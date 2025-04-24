@@ -12,29 +12,13 @@ public class Cipher {
 
     private static char[] alphabet;
 
-//    private static StringBuilder str;
-//
-//    private static List<String> listInputFile;
-//
-//    private static Path inputPath;
-//
-//    private static Path outputPath;
-
     private static int pathKey;
-
-
-
-
-
-
 
     public Cipher(char[] alphabet, int keyEncrypt, int keyStartIndexEncrypt) {
         this.alphabet = alphabet;
         int keyFirstIndex = keyStartIndexEncrypt >= 0 ? keyStartIndexEncrypt % alphabet.length : keyStartIndexEncrypt % alphabet.length + alphabet.length; // Расчет значения индекса с которого будет происходить отсчет
         pathKey = keyEncrypt >= 0? keyEncrypt % alphabet.length + keyFirstIndex : (keyEncrypt % alphabet.length) + keyFirstIndex + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
     }
-
-
 
     public void encrypt(String inputFile, String outputFile) throws IOException {
 
@@ -77,6 +61,7 @@ public class Cipher {
         Files.write(outputPath, str.toString().getBytes()); // Создаем файл и записываем строку в него
 
     }
+
     public void decrypt(String inputFile, String outputFile) throws IOException {
 
         StringBuilder str = new StringBuilder();
