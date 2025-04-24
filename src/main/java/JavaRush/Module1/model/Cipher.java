@@ -10,14 +10,31 @@ import java.util.List;
 
 public class Cipher {
 
-    private char[] alphabet;
+    private static char[] alphabet;
+
+    private static int keyEncrypt;
+
+    private static int keyStartIndexEncrypt;
+
+    private static StringBuilder str;
+
+    private static List<String> listInputFile;
+
+    private static Path inputPath;
+
+    private static Path outputPath;
 
 
-    public Cipher(char[] alphabet) {
+
+
+
+    public Cipher(char[] alphabet, int keyEncrypt, int keyStartIndexEncrypt) {
         this.alphabet = alphabet;
+        this.keyEncrypt = keyEncrypt;
+        this.keyStartIndexEncrypt = keyStartIndexEncrypt;
     }
 
-    public void encrypt(String inputFile, String outputFile, int keyEncrypt, int keyStartIndexEncrypt) throws IOException {
+    public void encrypt(String inputFile, String outputFile) throws IOException {
         StringBuilder str = new StringBuilder();
 
         Path inputPath = Paths.get(inputFile);
@@ -61,7 +78,7 @@ public class Cipher {
         Files.write(outputPath, str.toString().getBytes()); // Создаем файл и записываем строку в него
 
     }
-    public void decrypt(String inputFile, String outputFile, int keyEncrypt, int keyStartIndexEncrypt) throws IOException {
+    public void decrypt(String inputFile, String outputFile) throws IOException {
 
         StringBuilder str = new StringBuilder();
 
@@ -105,5 +122,7 @@ public class Cipher {
 
         Files.write(outputPath, str.toString().getBytes()); // Создаем файл и записываем строку в него
     }
+
+
 
 }

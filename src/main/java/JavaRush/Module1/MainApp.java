@@ -17,19 +17,19 @@ public class MainApp
 
     private static String outputFileForDecrypt = "C:\\Users\\User\\Desktop\\TestModule1\\DecryptText.txt";
 
-    private static int keyStartIndexEncrypt = 7;
+    private static int keyStartIndexEncrypt = Integer.MIN_VALUE;
 
-    private static int keyEncrypt = 5;
+    private static int keyEncrypt = Integer.MAX_VALUE;
 
 
     public static void main( String[] args )
     {
-        Cipher cipher = new Cipher(ALPHABET);
+        Cipher cipher = new Cipher(ALPHABET, keyEncrypt, keyStartIndexEncrypt);
 
 
         try {
-            cipher.encrypt(inputFileForEncrypt,outputFileForEncrypt, keyEncrypt, keyStartIndexEncrypt);
-            cipher.decrypt(outputFileForEncrypt,outputFileForDecrypt, keyEncrypt, keyStartIndexEncrypt);
+            cipher.encrypt(inputFileForEncrypt,outputFileForEncrypt);
+            cipher.decrypt(outputFileForEncrypt,outputFileForDecrypt);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
