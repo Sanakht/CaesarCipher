@@ -17,7 +17,7 @@ public class MainApp
 
     private static String outputFileForDecrypt = "C:\\Users\\User\\Desktop\\TestModule1\\DecryptText.txt";
 
-    private static int keyStartIndexEncrypt = Integer.MIN_VALUE;
+    private static int keyStartIndexEncrypt = Integer.MAX_VALUE;
 
     private static int keyEncrypt = Integer.MAX_VALUE;
 

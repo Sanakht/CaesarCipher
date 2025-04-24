@@ -12,19 +12,13 @@ public class Cipher {
 
     private static char[] alphabet;
 
-    private static int keyEncrypt;
-
-    private static int keyStartIndexEncrypt;
-
-    private static StringBuilder str;
-
-    private static List<String> listInputFile;
-
-    private static Path inputPath;
-
-    private static Path outputPath;
-
-    private static int keyFirstIndex;
+//    private static StringBuilder str;
+//
+//    private static List<String> listInputFile;
+//
+//    private static Path inputPath;
+//
+//    private static Path outputPath;
 
     private static int pathKey;
 
@@ -36,21 +30,20 @@ public class Cipher {
 
     public Cipher(char[] alphabet, int keyEncrypt, int keyStartIndexEncrypt) {
         this.alphabet = alphabet;
-        this.keyEncrypt = keyEncrypt;
-        this.keyStartIndexEncrypt = keyStartIndexEncrypt;
+        int keyFirstIndex = keyStartIndexEncrypt >= 0 ? keyStartIndexEncrypt % alphabet.length : keyStartIndexEncrypt % alphabet.length + alphabet.length; // Расчет значения индекса с которого будет происходить отсчет
+        pathKey = keyEncrypt >= 0? keyEncrypt % alphabet.length + keyFirstIndex : (keyEncrypt % alphabet.length) + keyFirstIndex + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
     }
 
+
+
     public void encrypt(String inputFile, String outputFile) throws IOException {
-        StringBuilder str = new StringBuilder();
 
-        Path inputPath = Paths.get(inputFile);
-        Path outputPath = Paths.get(outputFile);
+       StringBuilder str = new StringBuilder();
 
-        List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
+       Path inputPath = Paths.get(inputFile);
+       Path outputPath = Paths.get(outputFile);
 
-        int keyFirstIndex = keyStartIndexEncrypt >= 0? keyStartIndexEncrypt % alphabet.length : keyStartIndexEncrypt % alphabet.length  + alphabet.length; // Значение индекса с которого будет происходить отсчет
-
-        int encryptKey = keyEncrypt >= 0? keyEncrypt % alphabet.length + keyFirstIndex  : (keyEncrypt % alphabet.length) + keyFirstIndex  + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
+       List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
 
         for(String text: listInputFile) { // Используем цикл for-each для прохода по каждой строке в коллекции
 
@@ -62,7 +55,7 @@ public class Cipher {
                 int j = 0;
                 do{ // используем цикл do-while для уменьшения итераций
                     if(arrayChar[i] == alphabet[j]) {
-                        int index = j + encryptKey; 
+                        int index = j + pathKey;
                         if(index > alphabet.length - 1 ) {
                             index = (index - alphabet.length) % alphabet.length;
                         }
@@ -93,10 +86,6 @@ public class Cipher {
 
         List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
 
-        int keyFirstIndex = keyStartIndexEncrypt >= 0? keyStartIndexEncrypt % alphabet.length : keyStartIndexEncrypt % alphabet.length  + alphabet.length; // Значение индекса с которого будет происходить отсчет
-
-        int encryptKey = keyEncrypt >= 0? keyEncrypt % alphabet.length + keyFirstIndex  : (keyEncrypt % alphabet.length) + keyFirstIndex  + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
-
         for(String text: listInputFile) { // Используем цикл for-each для прохода по каждой строке в коллекции
 
             char[] arrayChar = text.toCharArray();  // Разбиваем строку на символы и записываем их в массив
@@ -107,11 +96,11 @@ public class Cipher {
                 int j = 0;
                 do{ // используем цикл do-while для уменьшения итераций
                     if(arrayChar[i] == alphabet[j]) {
-                        int index = j - encryptKey;
+                        int index = j - pathKey;
                         if(index < 0 ) {
                             index = (index + alphabet.length) % alphabet.length;
                         }
-                        newArrayChar[i] = alphabet[index]; // Добавляем зашифрованный символ в массив
+                        newArrayChar[i] = alphabet[index]; // Добавляем расшифрованный символ в массив
                         break; // Прерываем цикл, так как нет необходимости проходить его дальше
                     }
                     j++;
@@ -129,19 +118,7 @@ public class Cipher {
         Files.write(outputPath, str.toString().getBytes()); // Создаем файл и записываем строку в него
     }
 
-    public void stringPathsKey (String inputFile, String outputFile) throws IOException {
-        str = new StringBuilder();
 
-        inputPath = Paths.get(inputFile);
-        outputPath = Paths.get(outputFile);
-
-        listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
-
-        keyFirstIndex = keyStartIndexEncrypt >= 0? keyStartIndexEncrypt % alphabet.length : keyStartIndexEncrypt % alphabet.length  + alphabet.length; // Расчет значения индекса с которого будет происходить отсчет
-
-        pathKey = keyEncrypt >= 0? keyEncrypt % alphabet.length + keyFirstIndex  : (keyEncrypt % alphabet.length) + keyFirstIndex  + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
-
-    }
 
 
 
