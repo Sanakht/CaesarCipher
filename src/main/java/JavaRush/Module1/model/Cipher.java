@@ -24,6 +24,12 @@ public class Cipher {
 
     private static Path outputPath;
 
+    private static int keyFirstIndex;
+
+    private static int pathKey;
+
+
+
 
 
 
@@ -121,6 +127,20 @@ public class Cipher {
         }
 
         Files.write(outputPath, str.toString().getBytes()); // Создаем файл и записываем строку в него
+    }
+
+    public void stringPathsKey (String inputFile, String outputFile) throws IOException {
+        str = new StringBuilder();
+
+        inputPath = Paths.get(inputFile);
+        outputPath = Paths.get(outputFile);
+
+        listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
+
+        keyFirstIndex = keyStartIndexEncrypt >= 0? keyStartIndexEncrypt % alphabet.length : keyStartIndexEncrypt % alphabet.length  + alphabet.length; // Расчет значения индекса с которого будет происходить отсчет
+
+        pathKey = keyEncrypt >= 0? keyEncrypt % alphabet.length + keyFirstIndex  : (keyEncrypt % alphabet.length) + keyFirstIndex  + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
+
     }
 
 
