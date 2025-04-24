@@ -17,7 +17,7 @@ public class Cipher {
         this.alphabet = alphabet;
     }
 
-    public void encrypt(String inputFile, String outputFile, int key) throws IOException {
+    public void encrypt(String inputFile, String outputFile, int key, int keyStartIndex) throws IOException {
         StringBuilder str = new StringBuilder();
 
         Path inputPath = Paths.get(inputFile);
@@ -25,14 +25,12 @@ public class Cipher {
 
         List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
 
-        int keyFirstIndex = 1; // Значение индекса с которого будет происходить отсчет
+        int keyFirstIndex = keyStartIndex >= 0? keyStartIndex % alphabet.length : keyStartIndex % alphabet.length  + alphabet.length; // Значение индекса с которого будет происходить отсчет
 
-
-        int encryptKey = key >= 0? key % alphabet.length + keyFirstIndex : (key % alphabet.length) + keyFirstIndex + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
-
-
+        int encryptKey = key >= 0? key % alphabet.length + keyFirstIndex  : (key % alphabet.length) + keyFirstIndex  + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
 
         for(String text: listInputFile) { // Используем цикл for-each для прохода по каждой строке в коллекции
+
             char[] arrayChar = text.toCharArray();  // Разбиваем строку на символы и записываем их в массив
 
             char[] newArrayChar = new char[arrayChar.length]; // Создаем массив в который будем записывать полученные символы с помощью шифрования
@@ -41,7 +39,7 @@ public class Cipher {
                 int j = 0;
                 do{ // используем цикл do-while для уменьшения итераций
                     if(arrayChar[i] == alphabet[j]) {
-                        int index = j + encryptKey;
+                        int index = j + encryptKey; 
                         if(index > alphabet.length - 1 ) {
                             index = (index - alphabet.length) % alphabet.length;
                         }
@@ -63,8 +61,9 @@ public class Cipher {
         Files.write(outputPath, str.toString().getBytes()); // Создаем файл и записываем строку в него
 
     }
-    public void decrypt(String encryptedText, int shift) {
-        // Логика расшифровки
+    public void decrypt(String inputFile, String outputFile, int key, int keyStartIndex) {
+
+
 
     }
 

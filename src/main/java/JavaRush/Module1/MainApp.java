@@ -11,9 +11,15 @@ public class MainApp
             'и','к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
             'ъ', 'ы', 'ь', 'э', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' ','й','ё'};
 
-    public static String inputFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\Text.txt";
+    private static String inputFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\Text.txt";
 
-    public static String outPutFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\EncryptText.txt";
+    private static String outputFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\EncryptText.txt";
+
+    private static String outputFileForDecrypt = "C:\\Users\\User\\Desktop\\TestModule1\\DecryptText.txt";
+
+    private static int keyStartIndex = 0;
+
+    private static int key = 5;
 
 
     public static void main( String[] args )
@@ -22,7 +28,7 @@ public class MainApp
 
 
         try {
-            cipher.encrypt(inputFileForEncrypt,outPutFileForEncrypt,4);
+            cipher.encrypt(inputFileForEncrypt,outputFileForEncrypt, key, keyStartIndex);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
