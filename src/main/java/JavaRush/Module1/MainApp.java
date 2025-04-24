@@ -17,9 +17,9 @@ public class MainApp
 
     private static String outputFileForDecrypt = "C:\\Users\\User\\Desktop\\TestModule1\\DecryptText.txt";
 
-    private static int keyStartIndex = 0;
+    private static int keyStartIndexEncrypt = 7;
 
-    private static int key = 5;
+    private static int keyEncrypt = 5;
 
 
     public static void main( String[] args )
@@ -28,7 +28,8 @@ public class MainApp
 
 
         try {
-            cipher.encrypt(inputFileForEncrypt,outputFileForEncrypt, key, keyStartIndex);
+            cipher.encrypt(inputFileForEncrypt,outputFileForEncrypt, keyEncrypt, keyStartIndexEncrypt);
+            cipher.decrypt(outputFileForEncrypt,outputFileForDecrypt, keyEncrypt, keyStartIndexEncrypt);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
