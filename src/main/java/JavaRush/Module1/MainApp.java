@@ -17,9 +17,11 @@ public class MainApp
 
     private static String outputFileForDecrypt = "C:\\Users\\User\\Desktop\\TestModule1\\DecryptText.txt";
 
-    private static int keyStartIndexEncrypt = Integer.MAX_VALUE;
+    private static String outputDirectoryForBruteForce = "C:\\Users\\User\\Desktop\\TestModule1";
 
-    private static int keyEncrypt = Integer.MAX_VALUE;
+    private static int keyStartIndexEncrypt = 1;
+
+    private static int keyEncrypt = 1;
 
 
     public static void main( String[] args )
@@ -30,6 +32,7 @@ public class MainApp
         try {
             cipher.encrypt(inputFileForEncrypt,outputFileForEncrypt);
             cipher.decrypt(outputFileForEncrypt,outputFileForDecrypt);
+            cipher.bruteForce(outputFileForEncrypt,outputDirectoryForBruteForce);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
