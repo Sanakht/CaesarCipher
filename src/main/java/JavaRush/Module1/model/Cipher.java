@@ -104,11 +104,8 @@ public class Cipher {
 
     public void bruteForce(Path inputPath, Path outputPathDirectory) throws IOException {
 
-
-//       Path outputPathDirectory = Paths.get(outputDirectory);
        Path newBruteForcePath;
 
-//       if(Files.isDirectory(outputPathDirectory)) { // Проверка данного пути, что это директория
            if(outputPathDirectory.endsWith("BruteForce")){ // Проверяем что мы находимся в папке, где будем хранить результаты расшифровки с помощью метода BruteForce
                System.out.println("Путь указан в папку BruteForce. Запись расшифрованных файлов будет произведена в данную папку!");
                 newBruteForcePath = outputPathDirectory;
@@ -120,9 +117,7 @@ public class Cipher {
                 newBruteForcePath = Paths.get(outputPathDirectory + "\\BruteForce");
                Files.createDirectories(newBruteForcePath);
            }
-//       }else{
-//           throw new NotFoundPathForBruteForceException();
-//       }
+
 
         List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
 
