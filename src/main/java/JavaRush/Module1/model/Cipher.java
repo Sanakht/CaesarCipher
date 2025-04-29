@@ -24,7 +24,7 @@ public class Cipher {
     }
 
     public void encrypt(String inputFile, String outputFile) throws IOException {
-        System.out.println("Начинаю шифрование...");
+       System.out.println("Начинаю шифрование...");
        StringBuilder str = new StringBuilder();
 
        Path inputPath = Paths.get(inputFile);
