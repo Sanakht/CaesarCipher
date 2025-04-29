@@ -23,11 +23,9 @@ public class Cipher {
         pathKey = keyEncrypt >= 0? keyEncrypt % alphabet.length + keyFirstIndex : (keyEncrypt % alphabet.length) + keyFirstIndex + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
     }
 
-    public void encrypt(Path inputPath, String outputFile) throws IOException {
+    public void encrypt(Path inputPath, Path outputPath) throws IOException {
        System.out.println("Начинаю шифрование...");
        StringBuilder str = new StringBuilder();
-
-       Path outputPath = Paths.get(outputFile);
 
        List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
 
@@ -64,12 +62,10 @@ public class Cipher {
         System.out.println("Шифрование закончил!");
     }
 
-    public void decrypt(String inputFile, String outputFile) throws IOException {
+    public void decrypt(Path inputPath, Path outputPath) throws IOException {
         System.out.println("Начинаю расшифровку...");
         StringBuilder str = new StringBuilder();
 
-        Path inputPath = Paths.get(inputFile);
-        Path outputPath = Paths.get(outputFile);
 
         List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
 
@@ -106,13 +102,13 @@ public class Cipher {
         System.out.println("Расшифровку закончил!");
     }
 
-    public void bruteForce(String inputFile, String outputDirectory) throws IOException {
+    public void bruteForce(Path inputPath, Path outputPathDirectory) throws IOException {
 
-       Path inputPath = Paths.get(inputFile);
-       Path outputPathDirectory = Paths.get(outputDirectory);
+
+//       Path outputPathDirectory = Paths.get(outputDirectory);
        Path newBruteForcePath;
 
-       if(Files.isDirectory(outputPathDirectory)) { // Проверка данного пути, что это директория
+//       if(Files.isDirectory(outputPathDirectory)) { // Проверка данного пути, что это директория
            if(outputPathDirectory.endsWith("BruteForce")){ // Проверяем что мы находимся в папке, где будем хранить результаты расшифровки с помощью метода BruteForce
                System.out.println("Путь указан в папку BruteForce. Запись расшифрованных файлов будет произведена в данную папку!");
                 newBruteForcePath = outputPathDirectory;
@@ -124,9 +120,9 @@ public class Cipher {
                 newBruteForcePath = Paths.get(outputPathDirectory + "\\BruteForce");
                Files.createDirectories(newBruteForcePath);
            }
-       }else{
-           throw new NotFoundPathForBruteForceException();
-       }
+//       }else{
+//           throw new NotFoundPathForBruteForceException();
+//       }
 
         List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
 

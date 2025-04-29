@@ -2,6 +2,7 @@ package JavaRush.Module1;
 
 import JavaRush.Module1.model.Cipher;
 import JavaRush.Module1.validation.Validator;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,12 +14,15 @@ public class MainApp
             'ъ', 'ы', 'ь', 'э', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' ','й','ё'};
 
 
-    private static Path inputFileForEncrypt;  // "C:\\Users\\User\\Desktop\\TestModule1\\Text.txt";
-    private static String outputFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\EncryptText.txt";
+    private static Path inputFileForEncrypt;  // (Для тестов) "C:\\Users\\User\\Desktop\\TestModule1\\Text.txt";
+    private static Path outputFileForEncrypt; // (Для тестов) "C:\\Users\\User\\Desktop\\TestModule1\\EncryptText.txt";
 
-    private static String outputFileForDecrypt = "C:\\Users\\User\\Desktop\\TestModule1\\DecryptText.txt";
 
-    private static String outputDirectoryForBruteForce = "C:\\Users\\User\\Desktop\\TestModule1";
+    private static Path inputFileForDecrypt;  // (Для тестов) "C:\\Users\\User\\Desktop\\TestModule1\\EncryptText.txt";
+    private static Path outputFileForDecrypt; // (Для тестов) "C:\\Users\\User\\Desktop\\TestModule1\\DecryptText.txt";
+
+    private static Path inputFileForBruteForce; //(Для тестов) "C:\\Users\\User\\Desktop\\TestModule1\\EncryptText.txt";
+    private static Path outputDirectoryForBruteForce; //(Для тестов) "C:\\Users\\User\\Desktop\\TestModule1"
 
     private static int keyStartIndexEncrypt;
 
@@ -27,16 +31,33 @@ public class MainApp
 
     public static void main( String[] args )
     {
+        System.out.println("-----------Шифр Цезаря-----------");
+        System.out.println("-----------Шифрование текста-----------");
         keyEncrypt = Validator.keyEncrypt();
         keyStartIndexEncrypt = Validator.keyStartIndexEncrypt();
-        inputFileForEncrypt = Validator.pathInputFileForEncrypt();
+        inputFileForEncrypt = Validator.pathInputFile();
+        outputFileForEncrypt = Validator.pathOutputFile();
         Cipher cipher = new Cipher(ALPHABET, keyEncrypt, keyStartIndexEncrypt);
 
 
         try {
+
             cipher.encrypt(inputFileForEncrypt,outputFileForEncrypt);
-            cipher.decrypt(outputFileForEncrypt,outputFileForDecrypt);
-            cipher.bruteForce(outputFileForEncrypt,outputDirectoryForBruteForce);
+
+            System.out.println("-----------Расшифровка текста-----------");
+
+            inputFileForDecrypt = Validator.pathInputFile();
+            outputFileForDecrypt = Validator.pathOutputFile();
+
+            cipher.decrypt(inputFileForDecrypt,outputFileForDecrypt);
+
+            System.out.println("-----------Расшифровка текста методом BruteForce-----------");
+
+            inputFileForBruteForce = Validator.pathInputFile();
+            outputDirectoryForBruteForce = Validator.pathOutputDirectory();
+
+            cipher.bruteForce(inputFileForBruteForce,outputDirectoryForBruteForce);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
