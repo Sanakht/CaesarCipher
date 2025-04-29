@@ -2,13 +2,13 @@ package JavaRush.Module1.model;
 
 import JavaRush.Module1.exceptions.NotFoundPathForBruteForceException;
 import JavaRush.Module1.exceptions.NotFoundSymbolException;
-import org.w3c.dom.ls.LSOutput;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.SQLOutput;
+
 import java.util.List;
 
 public class Cipher {

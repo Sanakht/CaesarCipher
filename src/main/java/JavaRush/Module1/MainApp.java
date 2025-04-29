@@ -1,6 +1,7 @@
 package JavaRush.Module1;
 
 import JavaRush.Module1.model.Cipher;
+import JavaRush.Module1.validation.Validator;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -19,13 +20,15 @@ public class MainApp
 
     private static String outputDirectoryForBruteForce = "C:\\Users\\User\\Desktop\\TestModule1";
 
-    private static int keyStartIndexEncrypt = 1;
+    private static int keyStartIndexEncrypt;
 
-    private static int keyEncrypt = 1;
+    private static int keyEncrypt;
 
 
     public static void main( String[] args )
     {
+        keyEncrypt = Validator.keyEncrypt();
+        keyStartIndexEncrypt = Validator.keyStartIndexEncrypt();
         Cipher cipher = new Cipher(ALPHABET, keyEncrypt, keyStartIndexEncrypt);
 
 
