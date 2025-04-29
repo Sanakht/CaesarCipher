@@ -37,6 +37,7 @@ public class Validator {
     public static Path pathInputFileForEncrypt(){
         System.out.println("Введите путь хранения файла для шифрования: ");
         if(scanner.hasNextLine()){
+            scanner.nextLine();
             String path = scanner.nextLine();
                 if (Files.isRegularFile(Paths.get(path))) {
                     Path filePath = Paths.get(path);

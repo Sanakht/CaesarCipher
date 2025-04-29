@@ -23,11 +23,11 @@ public class Cipher {
         pathKey = keyEncrypt >= 0? keyEncrypt % alphabet.length + keyFirstIndex : (keyEncrypt % alphabet.length) + keyFirstIndex + alphabet.length; // Определяем по ключу, в каком направлении двигаться по массиву
     }
 
-    public void encrypt(String inputFile, String outputFile) throws IOException {
+    public void encrypt(Path inputPath, String outputFile) throws IOException {
        System.out.println("Начинаю шифрование...");
        StringBuilder str = new StringBuilder();
 
-       Path inputPath = Paths.get(inputFile);
+//       Path inputPath = Paths.get(inputFile);
        Path outputPath = Paths.get(outputFile);
 
        List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию

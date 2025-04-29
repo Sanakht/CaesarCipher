@@ -12,8 +12,8 @@ public class MainApp
             'и','к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
             'ъ', 'ы', 'ь', 'э', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' ','й','ё'};
 
-    private static String inputFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\Text.txt";
-//    private static Path inputFileForEncrypt;
+//    private static String inputFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\Text.txt";
+    private static Path inputFileForEncrypt;
     private static String outputFileForEncrypt = "C:\\Users\\User\\Desktop\\TestModule1\\EncryptText.txt";
 
     private static String outputFileForDecrypt = "C:\\Users\\User\\Desktop\\TestModule1\\DecryptText.txt";
@@ -29,7 +29,7 @@ public class MainApp
     {
         keyEncrypt = Validator.keyEncrypt();
         keyStartIndexEncrypt = Validator.keyStartIndexEncrypt();
-//        inputFileForEncrypt = Validator.pathInputFileForEncrypt();
+        inputFileForEncrypt = Validator.pathInputFileForEncrypt();
         Cipher cipher = new Cipher(ALPHABET, keyEncrypt, keyStartIndexEncrypt);
 
 
