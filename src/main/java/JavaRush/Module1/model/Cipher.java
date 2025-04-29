@@ -27,7 +27,6 @@ public class Cipher {
        System.out.println("Начинаю шифрование...");
        StringBuilder str = new StringBuilder();
 
-//       Path inputPath = Paths.get(inputFile);
        Path outputPath = Paths.get(outputFile);
 
        List<String> listInputFile = Files.readAllLines(inputPath); // Читаем все строки в файле inputPath и добавляем их построчно в коллекцию
@@ -121,7 +120,7 @@ public class Cipher {
                System.out.println("По данному пути есть папка BruteForce.");
                 newBruteForcePath = Paths.get(outputPathDirectory + "\\BruteForce");
            }else{ //Если по данному пути, нет папка BruteForce - создаем
-               System.out.println("Путь указан в место хранения. Создаем папку для хранения файлов, после расшифровки с помощью метода BruteForce!");
+               System.out.println("Путь указан в директорию хранения. Создаем папку для хранения файлов, после расшифровки с помощью метода BruteForce!");
                 newBruteForcePath = Paths.get(outputPathDirectory + "\\BruteForce");
                Files.createDirectories(newBruteForcePath);
            }

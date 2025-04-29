@@ -35,16 +35,20 @@ public class Validator {
     }
 
     public static Path pathInputFileForEncrypt(){
-        System.out.println("Введите путь хранения файла для шифрования: ");
+        System.out.println("Введите путь хранения файла для шифрования в формате .txt: ");
         if(scanner.hasNextLine()){
             scanner.nextLine();
             String path = scanner.nextLine();
-                if (Files.isRegularFile(Paths.get(path))) {
-                    Path filePath = Paths.get(path);
-                    return filePath;
+            Path inputFileForEncrypt = Paths.get(path);
+            if(inputFileForEncrypt.isAbsolute()) {
+                if (Files.isRegularFile(inputFileForEncrypt)) {
+                    return inputFileForEncrypt;
                 } else {
                     throw new NotFoundFileException("для шифрования");
                 }
+            }else{
+                throw new InvalidFilePathException("шифрования");
+            }
         }else{
             throw new UnknownError();
         }
